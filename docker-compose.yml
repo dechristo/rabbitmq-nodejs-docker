@@ -1,0 +1,14 @@
+version: '3'
+services:
+  rabbit-mq:
+    build: message-queue-server
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  sms-service:
+    build: sms-service
+    ports:
+      - "7000:7000"
+    depends_on:
+      - rabbit-mq
+    restart: unless-stopped
