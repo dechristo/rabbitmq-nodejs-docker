@@ -8,7 +8,7 @@ import { Message } from '../interfaces/message';
 })
 
 export class MessageService {
-  private readonly apiUrl = 'http://localhost:3000/message';
+  private readonly apiUrl = 'http://frontend:3000/message';
 
   constructor(private http: HttpClient) {
 
