@@ -15,7 +15,7 @@ export class MessageService {
   }
 
   public send(text: string) {
-    return this.http.post<Message>(this.apiUrl,  {}, {
+    return this.http.post<Message>(this.apiUrl,  { msg: text}, {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',

@@ -5,14 +5,19 @@ const app = express()
 const port = 3000
 
 app.use(cors());
+app.use(express.json())
 
-app.post('/message', (req, res) => {
-    amqp.connect('amqp://localhost', function(error0, connection) {
+var _connection = null;
+var _channel = null;
+var queue = "hello";
+
+amqp.connect('amqp://rabbit-mq:5672', function(error0, connection) {
     console.log('connecting to rabbit-mq server...');
     if (error0){
             console.log(error0);
             throw error0;
         }
+        _connection =  connection;
 
         connection.createChannel(function(error1, channel) {
             if (error1) {
@@ -22,21 +27,22 @@ app.post('/message', (req, res) => {
 
             console.log('channel created...');
 
-            var queue = 'hello';
-            var msg = 'Hello world';
+            _channel = channel;
 
-            channel.assertQueue(queue, {
+            _channel.assertQueue(queue, {
             durable: false
             });
-
-            channel.sendToQueue(queue, Buffer.from(msg));
-            console.log(" [x] Sent %s", msg);
-            res.send({data:{ msg }});
         });
-        setTimeout(function() {
-            connection.close();
-        }, 10);
+        // setTimeout(function() {
+        //     connection.close();
+        // }, 10);
     });
+
+app.post('/message', (req, res) => {
+    const text = req.body.msg;
+    _channel.sendToQueue(queue, Buffer.from(text));
+    console.log(" [x] Sent %s", text);
+    res.send({data:{message: text }});
 });
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

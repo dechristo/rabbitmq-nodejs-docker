@@ -5,6 +5,11 @@ services:
     ports:
       - "5672:5672"
       - "15672:15672"
+  proxy:
+    build: proxy
+    ports:
+      - 3000:3000
+    restart: unless-stopped
   sms-service:
     build: sms-service
     ports:
@@ -12,3 +17,7 @@ services:
     depends_on:
       - rabbit-mq
     restart: unless-stopped
+  frontend:
+    build: frontend/messages
+    ports:
+      - 4200:4200
