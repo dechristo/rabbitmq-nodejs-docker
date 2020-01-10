@@ -22,16 +22,16 @@ export class ControlPanelComponent implements OnInit {
     const today = new Date();
     const now = today.toLocaleDateString() + ' ' + today.toLocaleTimeString();
 
-    this.messages.push('[' + now  + '] ->> ' + this.message);
+    this.messages.push('[' + now  + '] HTTP Sent >> ' + this.message);
     this.messageService.sendHttp(this.message)
-      .subscribe( (response: Response) => this.messages.push('[' + now + '] <-- ' + response.data.message));
+      .subscribe( (response: Response) => this.messages.push('[' + now + '] HTTP Received << ' + response.data.message));
   }
 
   sendAMQP() {
     const today = new Date();
     const now = today.toLocaleDateString() + ' ' + today.toLocaleTimeString();
-    this.messages.push('[' + now + '] ->> ' + this.message);
+    this.messages.push('[' + now + '] AMQP Sent >> ' + this.message);
     this.messageService.sendAMQP(this.message)
-      .subscribe( (response: Response) => this.messages.push('[' + now + '] <-- ' + response.data.message));
+      .subscribe( (response: Response) => this.messages.push('[' + now + '] AMQP Received << ' + response.data.message));
   }
 }
