@@ -1,4 +1,4 @@
-export interface Message  {
+export interface Response  {
   data: {
     message: string;
   };

@@ -18,7 +18,23 @@ amqp.connect('amqp://rabbit-mq:5672', function(error0, connection) {
             throw error0;
         }
         _connection =  connection;
-    });
+});
+
+app.post('/request', (req, res) => {
+  let mappedInt = 0;
+  const text = req.body.msg;
+  switch(text.toString()) {
+      case 'aaa': mappedInt = 1000;
+          break
+      case 'bbb': mappedInt = 2000;
+          break
+      case 'ccc': mappedInt = 3000;
+          break
+      default: mappedInt = 9999;
+  }
+
+  res.send({data:{message: mappedInt}});
+});
 
 app.post('/message', (req, res) => {
     const text = req.body.msg;
@@ -63,4 +79,4 @@ app.post('/message', (req, res) => {
     );
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+app.listen(port, () => console.log(`Example app listening on port ${port}!`));

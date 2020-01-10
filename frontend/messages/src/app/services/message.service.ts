@@ -1,21 +1,31 @@
 
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Message } from '../interfaces/message';
+import { Response } from '../interfaces/Response';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class MessageService {
-  private readonly apiUrl = 'http://frontend:3000/message';
+  private readonly apiBaseUrl = 'http://localhost:3000/';
 
   constructor(private http: HttpClient) {
 
   }
 
-  public send(text: string) {
-    return this.http.post<Message>(this.apiUrl,  { msg: text}, {
+  public sendHttp(text: string) {
+    return this.http.post<Response>(this.apiBaseUrl + 'request',  { msg: text}, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST'
+      }
+    });
+  }
+
+  public sendAMQP(text: string) {
+    return this.http.post<Response>(this.apiBaseUrl + 'message',  { msg: text}, {
       headers: {
         'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',

@@ -1,4 +1,4 @@
-import { Message } from './../interfaces/message';
+import { Response } from '../interfaces/Response';
 import { Component, OnInit } from '@angular/core';
 import { MessageService } from 'src/app/services/message.service';
 
@@ -18,9 +18,20 @@ export class ControlPanelComponent implements OnInit {
   ngOnInit() {
   }
 
-  send() {
-    console.log(`sending ${this.message}`);
-    this.messageService.send(this.message)
-      .subscribe( (response: Message) => this.messages.push(response.data.message));
+  sendHTTP() {
+    const today = new Date();
+    const now = today.toLocaleDateString() + ' ' + today.toLocaleTimeString();
+
+    this.messages.push('[' + now  + '] ->> ' + this.message);
+    this.messageService.sendHttp(this.message)
+      .subscribe( (response: Response) => this.messages.push('[' + now + '] <-- ' + response.data.message));
+  }
+
+  sendAMQP() {
+    const today = new Date();
+    const now = today.toLocaleDateString() + ' ' + today.toLocaleTimeString();
+    this.messages.push('[' + now + '] ->> ' + this.message);
+    this.messageService.sendAMQP(this.message)
+      .subscribe( (response: Response) => this.messages.push('[' + now + '] <-- ' + response.data.message));
   }
 }
