@@ -1,8 +1,10 @@
-<div>
-  <input [(ngModel)]="message" type="text" />
-  <button (click)="sendAMQP()"> Send AMQP </button>
-  <button (click)="sendHTTP()"> Send HTTP </button>
-</div>
+<section class="request-form">
+  <input class="request-form__input" [(ngModel)]="message" type="text" />
+  <div class="request-form__cta">
+    <button class="request-form__button" (click)="sendAMQP()"> Send AMQP </button>
+    <button class="request-form__button" (click)="sendHTTP()"> Send HTTP </button>
+  </div>
+</section>
 
 
 <p *ngFor="let msg of messages">
