@@ -4,9 +4,9 @@
     <button class="request-form__button request-form__button--primary" (click)="sendAMQP()"> Send AMQP </button>
     <button class="request-form__button request-form__button--secondary" (click)="sendHTTP()"> Send HTTP </button>
   </div>
+  <div class="request-form__messages">
+    <p *ngFor="let msg of messages">
+      {{msg}}
+    </p>
+  </div>
 </section>
-
-
-<p *ngFor="let msg of messages">
-  {{msg}}
-</p>
