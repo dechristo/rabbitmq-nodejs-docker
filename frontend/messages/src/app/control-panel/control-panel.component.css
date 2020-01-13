@@ -19,12 +19,20 @@
   display: flex;
   justify-content: space-evenly;
   margin-top: 20px;
-  width: 200px;
+  width: 250px;
 }
 
 .request-form__button {
   border-radius: 10px;
-  height: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  height: 40px;
+  line-height: 1.5;
+  padding: 8px 10px 9px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.35s, background-color 0.35s, border-color 0.35s;
 }
 
 .request-form__button:focus {
@@ -32,3 +40,26 @@
   outline: 0;
 }
 
+.request-form__button--primary {
+  background-color: #fd8a02;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+
+.request-form__button--primary:hover {
+  background-color: #eb720c;
+  color: #ffffff;
+}
+
+.request-form__button--secondary {
+  background-color: rgba(253, 138, 2, 0);
+  border-color: #fd8a02;
+  color: #fd8a02;
+}
+
+
+.request-form__button--secondary:hover {
+  background-color: rgba(253, 138, 2, 0.075);
+  color: #fd8a02;
+}

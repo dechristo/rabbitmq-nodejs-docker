@@ -1,8 +1,8 @@
 <section class="request-form">
   <input class="request-form__input" [(ngModel)]="message" type="text" />
   <div class="request-form__cta">
-    <button class="request-form__button" (click)="sendAMQP()"> Send AMQP </button>
-    <button class="request-form__button" (click)="sendHTTP()"> Send HTTP </button>
+    <button class="request-form__button request-form__button--primary" (click)="sendAMQP()"> Send AMQP </button>
+    <button class="request-form__button request-form__button--secondary" (click)="sendHTTP()"> Send HTTP </button>
   </div>
 </section>
 
