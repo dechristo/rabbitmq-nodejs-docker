@@ -1,0 +1,76 @@
+.request-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.request-form__input {
+  font-size: 20px;
+  height: 40px;
+  margin-top: 10px;
+}
+
+.request-form__input:focus {
+  border-color: #fec581;
+  outline: 0;
+}
+
+.request-form__cta {
+  display: flex;
+  justify-content: space-evenly;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 250px;
+}
+
+.request-form__button {
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  height: 40px;
+  line-height: 1.5;
+  padding: 8px 10px 9px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.35s, background-color 0.35s, border-color 0.35s;
+}
+
+.request-form__button:focus {
+  border-color: #fec581;
+  border-width: 2px;
+  outline: 0;
+}
+
+.request-form__button--primary {
+  background-color: #fd8a02;
+  color: #ffffff;
+  border-color: transparent;
+}
+
+
+.request-form__button--primary:hover {
+  background-color: #eb720c;
+  color: #ffffff;
+}
+
+.request-form__button--secondary {
+  background-color: rgba(253, 138, 2, 0);
+  border-color: #fd8a02;
+  color: #fd8a02;
+}
+
+
+.request-form__button--secondary:hover {
+  background-color: rgba(253, 138, 2, 0.075);
+  color: #fd8a02;
+}
+
+.request-form__messages {
+  border-color: initial;
+  border-style: inset;
+  border-width: 2px;
+  height: 400px;
+  overflow-y: auto;
+  width: 350px;
+}
